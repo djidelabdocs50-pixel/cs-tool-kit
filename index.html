@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec Toolkit - Password Generator & Encryption</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation"></div>
+    
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">🛡️</div>
+                <h1>CyberSec Toolkit</h1>
+            </div>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                <span class="theme-icon">🎨</span>
+            </button>
+        </header>
+
+        <p class="subtitle">Professional Security Tools for Password Generation & Text Encryption</p>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="generator">
+                <span class="tab-icon">🔑</span>
+                Password Generator
+            </button>
+            <button class="tab-btn" data-tab="encryption">
+                <span class="tab-icon">🔐</span>
+                Encryption Tool
+            </button>
+        </div>
+
+        <!-- PASSWORD GENERATOR TAB -->
+        <div class="tab-content active" id="generator">
+            <div class="tool-card">
+                <h2 class="section-title">Generate Secure Passwords</h2>
+                
+                <!-- Password Display -->
+                <div class="password-display">
+                    <input type="text" id="generatedPassword" readonly placeholder="Your password will appear here">
+                    <button class="icon-btn copy-btn" id="copyPassword" title="Copy Password">
+                        <span>📋</span>
+                    </button>
+                    <button class="icon-btn refresh-btn" id="regenerate" title="Regenerate">
+                        <span>🔄</span>
+                    </button>
+                </div>
+
+                <!-- Strength Meter -->
+                <div class="strength-meter">
+                    <div class="strength-label">
+                        <span>Strength:</span>
+                        <span id="strengthText">Generate a password</span>
+                    </div>
+                    <div class="strength-bar-container">
+                        <div class="strength-bar" id="strengthBar"></div>
+                    </div>
+                </div>
+
+                <!-- Password Options -->
+                <div class="options-grid">
+                    <div class="option-group">
+                        <label class="option-header">
+                            <span>Length: <strong id="lengthValue">16</strong></span>
+                        </label>
+                        <input type="range" id="passwordLength" min="8" max="64" value="16" class="slider">
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeUppercase" checked>
+                            <span class="checkmark"></span>
+                            <span>Uppercase Letters (A-Z)</span>
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeLowercase" checked>
+                            <span class="checkmark"></span>
+                            <span>Lowercase Letters (a-z)</span>
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeNumbers" checked>
+                            <span class="checkmark"></span>
+                            <span>Numbers (0-9)</span>
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeSymbols" checked>
+                            <span class="checkmark"></span>
+                            <span>Symbols (!@#$%^&*)</span>
+                        </label>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="excludeAmbiguous">
+                            <span class="checkmark"></span>
+                            <span>Exclude Ambiguous (0, O, l, 1)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button class="primary-btn" id="generateBtn">
+                    <span>⚡</span> Generate Password
+                </button>
+
+                <!-- Advanced Options Toggle -->
+                <button class="toggle-advanced" id="toggleAdvanced">
+                    <span>⚙️ Advanced Options</span>
+                    <span class="arrow">▼</span>
+                </button>
+
+                <!-- Advanced Options Panel -->
+                <div class="advanced-panel" id="advancedPanel">
+                    <div class="advanced-grid">
+                        <div class="advanced-option">
+                            <label>Password Type:</label>
+                            <select id="passwordType" class="select-input">
+                                <option value="random">Random (Most Secure)</option>
+                                <option value="memorable">Memorable (Word-based)</option>
+                                <option value="passphrase">Passphrase (4-6 words)</option>
+                                <option value="pin">PIN Code (Numbers only)</option>
+                            </select>
+                        </div>
+
+                        <div class="advanced-option">
+                            <label>Generate Multiple:</label>
+                            <button class="secondary-btn" id="bulkGenerate">
+                                Generate 10 Passwords
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bulk Password Display -->
+                <div class="bulk-passwords" id="bulkPasswords" style="display: none;">
+                    <h3>Generated Passwords:</h3>
+                    <div class="password-list" id="passwordList"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ENCRYPTION TAB -->
+        <div class="tab-content" id="encryption">
+            <div class="tool-card">
+                <h2 class="section-title">Text Encryption & Decryption</h2>
+
+                <!-- Mode Toggle -->
+                <div class="mode-toggle">
+                    <button class="mode-btn active" data-mode="encrypt">
+                        <span>🔒</span> Encrypt
+                    </button>
+                    <button class="mode-btn" data-mode="decrypt">
+                        <span>🔓</span> Decrypt
+                    </button>
+                </div>
+
+                <!-- Input Text -->
+                <div class="input-group">
+                    <label>Input Text:</label>
+                    <textarea id="inputText" placeholder="Enter text to encrypt or decrypt..." rows="4"></textarea>
+                </div>
+
+                <!-- Cipher Selection -->
+                <div class="cipher-selection">
+                    <label>Encryption Method:</label>
+                    <div class="cipher-grid">
+                        <button class="cipher-btn active" data-cipher="caesar">
+                            <span class="cipher-name">Caesar Cipher</span>
+                            <span class="cipher-info" title="Classic shift cipher">ℹ️</span>
+                        </button>
+                        <button class="cipher-btn" data-cipher="rot13">
+                            <span class="cipher-name">ROT13</span>
+                            <span class="cipher-info" title="Caesar cipher with shift of 13">ℹ️</span>
+                        </button>
+                        <button class="cipher-btn" data-cipher="base64">
+                            <span class="cipher-name">Base64</span>
+                            <span class="cipher-info" title="Binary to text encoding">ℹ️</span>
+                        </button>
+                        <button class="cipher-btn" data-cipher="xor">
+                            <span class="cipher-name">XOR</span>
+                            <span class="cipher-info" title="XOR encryption with key">ℹ️</span>
+                        </button>
+                        <button class="cipher-btn" data-cipher="substitution">
+                            <span class="cipher-name">Substitution</span>
+                            <span class="cipher-info" title="Letter substitution cipher">ℹ️</span>
+                        </button>
+                        <button class="cipher-btn" data-cipher="reverse">
+                            <span class="cipher-name">Reverse</span>
+                            <span class="cipher-info" title="Simple text reversal">ℹ️</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Key Input (for ciphers that need it) -->
+                <div class="key-input-group" id="keyInputGroup">
+                    <label id="keyLabel">Shift Value:</label>
+                    <input type="number" id="cipherKey" placeholder="Enter shift value (1-25)" min="1" max="25" value="13">
+                </div>
+
+                <!-- Process Button -->
+                <button class="primary-btn" id="processBtn">
+                    <span>🔐</span> <span id="processBtnText">Encrypt Text</span>
+                </button>
+
+                <!-- Output Text -->
+                <div class="output-group">
+                    <div class="output-header">
+                        <label>Output:</label>
+                        <button class="icon-btn copy-btn" id="copyOutput" title="Copy Output">
+                            <span>📋</span>
+                        </button>
+                    </div>
+                    <textarea id="outputText" readonly placeholder="Encrypted/Decrypted text will appear here..." rows="4"></textarea>
+                </div>
+
+                <!-- Cipher Info Box -->
+                <div class="info-box" id="cipherInfo">
+                    <h4>ℹ️ About Caesar Cipher</h4>
+                    <p>The Caesar cipher is one of the simplest and oldest encryption techniques. It shifts each letter by a fixed number of positions in the alphabet.</p>
+                    <p><strong>Security:</strong> Educational only - easily broken</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2026 CyberSec Toolkit. Built for Security & Learning.</p>
+            <p class="footer-note">⚠️ Educational Purpose - Use strong encryption for real security needs</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toastMessage">Copied to clipboard!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
