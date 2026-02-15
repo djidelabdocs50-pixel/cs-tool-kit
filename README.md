@@ -80,38 +80,6 @@ A professional, full-featured cybersecurity toolkit combining secure password ge
 - Toast notifications for user feedback
 - Tab-based navigation
 
-## 🚀 Quick Start
-
-### View Live
-Simply visit the [live demo](https://djidelabdocs50-pixel.github.io/cs-tool-kit/)
-
-### Run Locally
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/djidelabdocs50-pixel/cs-tool-kit.git
-cd cs-tool-kit
-```
-
-2. **Open in browser**
-```bash
-# Option 1: Direct open
-open index.html
-
-# Option 2: Local server (recommended)
-python -m http.server 8000
-# Then visit http://localhost:8000
-```
-
-## 📁 Project Structure
-
-```
-cs-tool-kit/
-├── index.html          # Main HTML structure
-├── style.css           # All styling with dual themes
-├── script.js           # Password generation & encryption logic
-└── README.md           # This file
-```
 
 ## 💻 Usage
 
